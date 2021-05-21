@@ -143,6 +143,11 @@ public class LivroController extends HttpServlet {
 		//setar variavel na classe beans de livro
 		livro.setIdLivro(Integer.parseInt(idLivro));
 		
+		//executar método delete da classe livro DAO passando o objeto de livro como parâmetro
+		livroDao.delete(livro);
+		
+		//encaminha para a pagina dos livros 
+		response.sendRedirect("livros");
 		
 	}
 

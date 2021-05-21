@@ -130,6 +130,7 @@ public class livroDAO {
 		}
 	}
 	
+	//CRUD **UPDATE LIVRO**
 	public boolean update (Livros livro) {
 		String sql = "UPDATE tbl_livros set nomeLivro=?, ISBN13=?, dataPub=?, precoLivro=?, numeroPaginas=?, idEditora=?, idAssunto=? where idLivro = ?";
 		con = connectionFactory.getConnection();
@@ -154,5 +155,24 @@ public class livroDAO {
 		}
 		
 		
+	}
+	
+	//CRUD **DELETE LIVRO**
+	public boolean delete(Livros livro) {
+		String sql = "DELETE FROM tbl_livros WHERE idLivro = ? ";
+		con = connectionFactory.getConnection();
+		PreparedStatement stmt = null;
+		
+		try {
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, livro.getIdLivro());
+			stmt.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			System.err.println("Erro: " +e);
+			return false;
+		}finally {
+			connectionFactory.closeConnection(con,stmt);
+		}
 	}
 }
