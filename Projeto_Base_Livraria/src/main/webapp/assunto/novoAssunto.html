@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Livraria Projeto Base</title>
+<link rel="icon" href="../imagens/livros.png">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+	<h1>Inserir um novo assunto</h1>
+	<form name="frmAssunto" action="../insertAssunto">
+		<table>
+			<tr>
+				<td><input type="text" name="nomeAssunto" placeholder="Nome do assunto" class="campos"></td>
+			</tr>
+	
+		</table>
+		<input type="button" value="Adicionar" class="botao1" onClick="validarAssunto()" >
+		<a href="../assuntos" class="botao1">Voltar</a>
+	</form>
+	
+<script src="../scripts/validaAssunto.js"> </script>
+
+</body>
+</html>

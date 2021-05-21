@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Livraria Projeto Base</title>
+<link rel="icon" href="../imagens/livros.png">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+	<h1>Inserir um novo autor</h1>
+	<form name="frmAutor" action="../insertAutor">
+		<table>
+			<tr>
+				<td><input type="text" name="nomeAutor" placeholder="Nome do autor" class="campos"></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="sobrenomeAutor" placeholder="Sobrenome do autor" class="campos"></td>
+			</tr>
+	
+		</table>
+		<input type="button" value="Adicionar" class="botao1" onClick="validarAutor()" >
+		<a href="../autores" class="botao1">Voltar</a>
+	</form>
+	
+<script src="../scripts/validaAutor.js"> </script>
+
+</body>
+</html>

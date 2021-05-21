@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Livraria Projeto Base</title>
+<link rel="icon" href="../imagens/livros.png">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+	<h1>Inserir uma nova editora</h1>
+	<form name="frmEditora" action="../insertEditora">
+		<table>
+			<tr>
+				<td><input type="text" name="nomeEditora" placeholder="Nome da editora" class="campos"></td>
+			</tr>
+	
+		</table>
+		<input type="button" value="Adicionar" class="botao1" onClick="validarEditora()" >
+		<a href="../editoras" class="botao1">Voltar</a>
+	</form>
+	
+<script src="../scripts/validaEditora.js"> </script>
+
+</body>
+</html>
