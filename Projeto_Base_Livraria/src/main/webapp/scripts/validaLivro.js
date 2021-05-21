@@ -1,7 +1,7 @@
 
 /**
  * Validação de formulário
-	@author William Araujo
+ * @author William Araujo
  */
 
 function validar(){
@@ -44,4 +44,12 @@ function validar(){
 	}else{
 		document.forms["frmLivro"].submit()
 	}
+}
+
+function confirmar(idLivro){
+	let resposta = confirm("Confirma a exclusão deste livro?")
+	if(resposta === true){
+		window.location.href = "deleteLivro?idLivro=" + idLivro
+	}
+	
 }

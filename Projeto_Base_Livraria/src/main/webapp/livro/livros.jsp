@@ -22,7 +22,7 @@
 	
 
 	<a href="livro/novoLivro.html" class="botao1">Novo Livro</a>
-	<a href="main" class="botao1">Menu</a>
+	<a href="index.html" class="botao1">Menu</a>
 	<table id="tabela">
 		<thead>
 			<tr>
@@ -49,12 +49,14 @@
 		    		<td><%=listaLivros.get(i).getPaginas()%></td>
 		    		<td><%=listaLivros.get(i).getEditora().getIdEditora()%></td>
 		    		<td><%=listaLivros.get(i).getAssunto().getIdAssunto()%></td>
-		    		<td><a href="selectLivro?idLivro=<%=listaLivros.get(i).getIdLivro()%>" class="botao1">Editar </a></td>
+		    		<td><a href="selectLivro?idLivro=<%=listaLivros.get(i).getIdLivro()%>" class="botao1">Editar</a>
+		    		<a href="javascript: confirmar(<%=listaLivros.get(i).getIdLivro()%>)" class="botao2">Excluir </a>
+		    		</td>
 		    	</tr>
 		    <%}%>
 		</tbody>		
 	</table>
-	
+	<script src="scripts/validaLivro.js"></script>
 	
 </body>
 </html>

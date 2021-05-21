@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h1>Editar Livro</h1>
-	<form name="frmLivro" action="insertLivro">
+	<form name="frmLivro" action="updateLivro">
 		<table>
 			<tr>
 				<td><input type="number" name="idLivro" id="campos2" readonly 

@@ -21,7 +21,7 @@
 	
 	
 	<a href="assunto/novoAssunto.html" class="botao1">Novo Assunto</a>
-	<a href="main" class="botao1">Menu</a>
+	<a href="index.html" class="botao1">Menu</a>
 	<table id="tabela">
 		<thead>
 			<tr>

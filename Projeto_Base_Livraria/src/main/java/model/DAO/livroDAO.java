@@ -130,8 +130,29 @@ public class livroDAO {
 		}
 	}
 	
-	/*public boolean update (Livros livro) {
-		String sql = "UPDATE tbl_livros SET (";
+	public boolean update (Livros livro) {
+		String sql = "UPDATE tbl_livros set nomeLivro=?, ISBN13=?, dataPub=?, precoLivro=?, numeroPaginas=?, idEditora=?, idAssunto=? where idLivro = ?";
+		con = connectionFactory.getConnection();
+		PreparedStatement stmt = null;
+		try {
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, livro.getNomeLivro());
+			stmt.setString(2, livro.getIsbn13());
+			stmt.setString(3, livro.getDataPub());
+			stmt.setDouble(4, livro.getPreco());
+			stmt.setInt   (5, livro.getPaginas());
+			stmt.setInt(6, livro.getEditora().getIdEditora());
+			stmt.setInt(7, livro.getAssunto().getIdAssunto());
+			stmt.setInt   (8, livro.getIdLivro());
+			stmt.executeUpdate(); 
+			return true;
+		} catch (SQLException e) {
+			System.err.println("Erro: " +e);
+			return false;
+		}finally {
+			connectionFactory.closeConnection(con,stmt);
+		}
 		
-	}*/
+		
+	}
 }

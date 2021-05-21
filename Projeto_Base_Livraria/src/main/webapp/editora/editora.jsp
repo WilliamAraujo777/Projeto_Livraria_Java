@@ -21,7 +21,7 @@
 	
 	
 	<a href="editora/novaEditora.html" class="botao1">Nova Editora</a>
-	<a href="main" class="botao1">Menu</a>
+	<a href="index.html" class="botao1">Menu</a>
 	<table id="tabela">
 		<thead>
 			<tr>

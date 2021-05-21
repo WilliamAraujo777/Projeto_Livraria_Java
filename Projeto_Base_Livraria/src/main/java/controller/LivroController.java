@@ -17,7 +17,7 @@ import model.beans.Assunto;
 import model.beans.Editora;
 import model.beans.Livros;
 
-@WebServlet(urlPatterns = { "/LivroController", "/livros","/insertLivro","/main","/selectLivro"})
+@WebServlet(urlPatterns = { "/LivroController", "/livros","/insertLivro","/selectLivro","/updateLivro","/deleteLivro"})
 public class LivroController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	livroDAO livroDao = new livroDAO();
@@ -39,8 +39,10 @@ public class LivroController extends HttpServlet {
 			novoLivro(request, response);
 		}else if (action.equals("/selectLivro")) {
 			listarLivro(request, response);
-		}else{
-			response.sendRedirect("index.html");
+		}else if (action.equals("/updateLivro")) {
+			editarLivro(request, response);
+		}else if (action.equals("/deleteLivro")) {
+			deletarLivro(request, response);
 		}
 	}
 
@@ -97,6 +99,51 @@ public class LivroController extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("livro/editaLivro.jsp");
 		rd.forward(request,response);
 	
+	}
+	
+	protected void editarLivro(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		edit.setIdEditora(Integer.parseInt(request.getParameter("nomeEdit")));
+		assunto.setIdAssunto(Integer.parseInt(request.getParameter("nomeAssunto")));
+		
+		livro.setIdLivro(Integer.parseInt(request.getParameter("idLivro")));
+		livro.setNomeLivro(request.getParameter("nomeLivro"));
+		livro.setIsbn13(request.getParameter("isbn"));
+		livro.setDataPub(request.getParameter("dataPub"));
+		livro.setPreco(Double.parseDouble(request.getParameter("preco")));
+		livro.setPaginas(Integer.parseInt(request.getParameter("qtdPag")));
+		livro.setEditora(edit);
+		livro.setAssunto(assunto);
+		
+		//executar método do livroDAO
+		livroDao.update(livro);
+		
+		//redirecionar a pagina livros.jsp, mostrando todas as alterações
+		response.sendRedirect("livros");
+		
+		//TESTE DE RECEBIMENTO DO FORMULÁRIO!
+		/*System.out.println(request.getParameter("idLivro"));
+		System.out.println(request.getParameter("nomeLivro"));
+		System.out.println(request.getParameter("isbn"));
+		System.out.println(request.getParameter("dataPub"));
+		System.out.println(request.getParameter("preco"));
+		System.out.println(request.getParameter("qtdPag"));
+		System.out.println(request.getParameter("nomeEdit"));
+		System.out.println(request.getParameter("nomeAssunto"));*/
+	
+	}
+	
+	//Remover livro
+	protected void deletarLivro(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		//recebendo id do livro a ser excluído
+		String idLivro = request.getParameter("idLivro");
+		//setar variavel na classe beans de livro
+		livro.setIdLivro(Integer.parseInt(idLivro));
+		
+		
 	}
 
 	
