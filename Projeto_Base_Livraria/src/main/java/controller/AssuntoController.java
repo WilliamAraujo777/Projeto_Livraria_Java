@@ -102,15 +102,15 @@ public class AssuntoController extends HttpServlet {
 	protected void deletarAssunto(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		//recebendo id do livro a ser excluído
+		//recebendo id do assunto a ser excluído
 		String idAssunto = request.getParameter("idAssunto");
-		//setar variavel na classe beans de livro
+		//setar variavel na classe beans de assunto
 		assunto.setIdAssunto(Integer.parseInt(idAssunto));
 		
-		//executar método delete da classe livro DAO passando o objeto de livro como parâmetro
+		//executar método delete da classe assunto DAO passando o objeto de assunto como parâmetro
 		assuntoDAO.delete(assunto);
 		
-		//encaminha para a pagina dos livros 
+		//encaminha para a pagina dos assuntos 
 		response.sendRedirect("assuntos");
 		
 	}

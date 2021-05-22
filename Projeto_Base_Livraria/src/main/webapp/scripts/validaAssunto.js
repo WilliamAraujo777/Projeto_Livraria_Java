@@ -17,7 +17,7 @@ function validarAssunto(){
 }
 
 function confirmar(idAssunto){
-	let resposta = confirm("Confirma a exclusão deste assunto?<br> (LEMBRANDO QUE TODOS OS LIVROS RELACIONADOS A ESTE ASSUNTO TAMBÉM SERÃO APAGADOS!!)")
+	let resposta = confirm("Confirma a exclusão deste assunto? (LEMBRANDO QUE TODOS OS LIVROS RELACIONADOS A ESTE ASSUNTO TAMBÉM SERÃO APAGADOS!!)")
 	if(resposta === true){
 		window.location.href = "deleteAssunto?idAssunto=" + idAssunto
 	}

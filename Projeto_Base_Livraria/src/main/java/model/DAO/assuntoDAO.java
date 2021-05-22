@@ -58,7 +58,7 @@ public class assuntoDAO {
 		try {
 			stmt = con.prepareStatement(read);
 			rs = stmt.executeQuery();
-			//o laÃ§o abaixo sera executado enquanto houver editoras
+			//o laço abaixo sera executado enquanto houver assuntos
 			while(rs.next()) {
 				Assunto assunto = new Assunto();
 				assunto.setIdAssunto(rs.getInt("IdAssunto"));

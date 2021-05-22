@@ -27,6 +27,7 @@
 			<tr>
 				<th>ID</th>
 				<th>Nome da editora</th>
+				<th>Opções</th>
 			</tr>
 		</thead>
 		
@@ -35,11 +36,15 @@
 		    	<tr>
 		    		<td><%=listaEditoras.get(i).getIdEditora()%></td>
 		    		<td><%=listaEditoras.get(i).getEditora()%></td>
+		    		<td><a href="selectEditora?idEditora=<%=listaEditoras.get(i).getIdEditora()%>" class="botao1">Editar</a>
+		    		<a href="javascript: confirmar(<%=listaEditoras.get(i).getIdEditora()%>)" class="botao2">Excluir </a>
+		    		</td>
 		 
 		    	</tr>
 		    <%}%>
 		</tbody>		
 	</table>
+	<script src="scripts/validaEditora.js"></script>
 	
 	
 </body>

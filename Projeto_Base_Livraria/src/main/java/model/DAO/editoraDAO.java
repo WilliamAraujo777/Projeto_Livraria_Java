@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connection.connectionFactory;
-
+import model.beans.Assunto;
 import model.beans.Editora;
 
 public class editoraDAO {
@@ -63,6 +63,69 @@ public class editoraDAO {
 			return null;
 		}finally {
 			connectionFactory.closeConnection(con);
+		}
+	}
+	
+	/*EDITAR EDITORA*/
+	public void selecionarEditora(Editora edit) {
+		String sql = "SELECT * FROM tbl_editoras WHERE IdEditora = ?";
+		con = connectionFactory.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, edit.getIdEditora());
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				edit.setIdEditora(rs.getInt(1));
+				edit.setEditora(rs.getString(2));
+			
+			}
+		} catch (SQLException e) {
+			System.err.println("Erro: " +e);
+		} finally {
+			connectionFactory.closeConnection(con,stmt,rs);
+		}
+	}
+	
+	//CRUD **UPDATE EDITORA**
+	public boolean update (Editora edit) {
+		String sql = "UPDATE tbl_editoras set NomeEditora=? where IdEditora = ?";
+		con = connectionFactory.getConnection();
+		PreparedStatement stmt = null;
+		try {
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, edit.getEditora());
+			stmt.setInt   (2, edit.getIdEditora());
+			stmt.executeUpdate(); 
+			return true;
+		} catch (SQLException e) {
+			System.err.println("Erro: " +e);
+			return false;
+		}finally {
+			connectionFactory.closeConnection(con,stmt);
+		}
+		
+		
+	}
+	
+	//CRUD **DELETE EDITORA**
+	public boolean delete(Editora edit) {
+		String sql = "DELETE FROM tbl_editoras WHERE IdEditora = ? ";
+		con = connectionFactory.getConnection();
+		PreparedStatement stmt = null;
+		
+		try {
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, edit.getIdEditora());
+			stmt.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			System.err.println("Erro: " +e);
+			return false;
+		}finally {
+			connectionFactory.closeConnection(con,stmt);
 		}
 	}
 	
