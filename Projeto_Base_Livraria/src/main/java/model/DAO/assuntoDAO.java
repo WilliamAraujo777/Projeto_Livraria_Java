@@ -9,6 +9,8 @@ import java.util.List;
 
 import connection.connectionFactory;
 import model.beans.Assunto;
+import model.beans.Editora;
+import model.beans.Livros;
 
 
 
@@ -70,6 +72,69 @@ public class assuntoDAO {
 			return null;
 		}finally {
 			connectionFactory.closeConnection(con);
+		}
+	}
+	
+	/*EDITAR ASSUNTO*/
+	public void selecionarAssunto(Assunto assunto) {
+		String read2 = "SELECT * FROM tbl_assuntos WHERE IdAssunto = ?";
+		con = connectionFactory.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = con.prepareStatement(read2);
+			stmt.setInt(1, assunto.getIdAssunto());
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				assunto.setIdAssunto(rs.getInt(1));
+				assunto.setAssunto(rs.getString(2));
+			
+			}
+		} catch (Exception e) {
+			System.err.println("Erro: " +e);
+		} finally {
+			connectionFactory.closeConnection(con,stmt,rs);
+		}
+	}
+	
+	//CRUD **UPDATE ASSUNTO**
+	public boolean update (Assunto assunto) {
+		String sql = "UPDATE tbl_assuntos set Assunto=? where IdAssunto = ?";
+		con = connectionFactory.getConnection();
+		PreparedStatement stmt = null;
+		try {
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, assunto.getAssunto());
+			stmt.setInt   (2, assunto.getIdAssunto());
+			stmt.executeUpdate(); 
+			return true;
+		} catch (SQLException e) {
+			System.err.println("Erro: " +e);
+			return false;
+		}finally {
+			connectionFactory.closeConnection(con,stmt);
+		}
+		
+		
+	}
+	
+	//CRUD **DELETE ASSUNTO**
+	public boolean delete(Assunto assunto) {
+		String sql = "DELETE FROM tbl_assuntos WHERE IdAssunto = ? ";
+		con = connectionFactory.getConnection();
+		PreparedStatement stmt = null;
+		
+		try {
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, assunto.getIdAssunto());
+			stmt.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			System.err.println("Erro: " +e);
+			return false;
+		}finally {
+			connectionFactory.closeConnection(con,stmt);
 		}
 	}
 	

@@ -15,3 +15,11 @@ function validarAssunto(){
 		document.forms["frmAssunto"].submit()
 	}
 }
+
+function confirmar(idAssunto){
+	let resposta = confirm("Confirma a exclusão deste assunto?<br> (LEMBRANDO QUE TODOS OS LIVROS RELACIONADOS A ESTE ASSUNTO TAMBÉM SERÃO APAGADOS!!)")
+	if(resposta === true){
+		window.location.href = "deleteAssunto?idAssunto=" + idAssunto
+	}
+	
+}

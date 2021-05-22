@@ -12,7 +12,7 @@ import model.DAO.assuntoDAO;
 import model.beans.Assunto;
 
 
-@WebServlet(urlPatterns = { "/AssuntoController","/assuntos","/insertAssunto" })
+@WebServlet(urlPatterns = { "/AssuntoController","/assuntos","/insertAssunto","/selectAssunto","/updateAssunto","/deleteAssunto" })
 public class AssuntoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	assuntoDAO assuntoDAO = new assuntoDAO();
@@ -31,8 +31,12 @@ public class AssuntoController extends HttpServlet {
 			assuntos(request, response);
 		}else if (action.equals("/insertAssunto")) {
 			novoAssunto(request, response);
-		}else{
-			response.sendRedirect("index.html");
+		}else if (action.equals("/selectAssunto")) {
+			listarAssunto(request, response);
+		}else if (action.equals("/updateAssunto")) {
+			editarAssunto(request, response);
+		}else if (action.equals("/deleteAssunto")) {
+			deletarAssunto(request, response);
 		}
 	}
 
@@ -56,5 +60,58 @@ public class AssuntoController extends HttpServlet {
 
 		response.sendRedirect("assuntos");
 	}
+	//Editar assunto
+	protected void listarAssunto(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		//recebendo id do assunto a ser editado
+		int idAssunto = (Integer.parseInt(request.getParameter("idAssunto")));
+		
+		assunto.setIdAssunto(idAssunto);
+		
+		assuntoDAO.selecionarAssunto(assunto);
+		
+		//setando atributo do formulario com o conteudo do assunto
+		request.setAttribute("idAssunto",assunto.getIdAssunto());
+		request.setAttribute("nomeAssunto",assunto.getAssunto());
+		
+		//Encaminhar ao documento editaAssunto.jsp
+		RequestDispatcher rd = request.getRequestDispatcher("assunto/editaAssunto.jsp");
+		rd.forward(request,response);
 	
+	}
+	
+	protected void editarAssunto(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+	
+		
+		assunto.setIdAssunto(Integer.parseInt(request.getParameter("idAssunto")));
+		
+		assunto.setAssunto(request.getParameter("nomeAssunto"));
+		
+		
+		//executar método do assuntoDAO
+		assuntoDAO.update(assunto);
+		
+		//redirecionar a pagina assuntos.jsp, mostrando todas as alterações
+		response.sendRedirect("assuntos");
+
+	}
+	
+	//Remover assunto
+	protected void deletarAssunto(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		//recebendo id do livro a ser excluído
+		String idAssunto = request.getParameter("idAssunto");
+		//setar variavel na classe beans de livro
+		assunto.setIdAssunto(Integer.parseInt(idAssunto));
+		
+		//executar método delete da classe livro DAO passando o objeto de livro como parâmetro
+		assuntoDAO.delete(assunto);
+		
+		//encaminha para a pagina dos livros 
+		response.sendRedirect("assuntos");
+		
+	}
 }
