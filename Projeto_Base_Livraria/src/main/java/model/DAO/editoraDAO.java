@@ -14,8 +14,6 @@ import model.beans.Editora;
 public class editoraDAO {
 	
 	private Connection con = null;
-	
-	
 	public editoraDAO() {
 		
 	}
@@ -39,7 +37,6 @@ public class editoraDAO {
 		}
 		
 	}
-	
 	public List<Editora> listarEditora() {
 		List<Editora> editoras = new ArrayList<>();
 		String read = "select * from tbl_editoras";
@@ -65,7 +62,6 @@ public class editoraDAO {
 			connectionFactory.closeConnection(con);
 		}
 	}
-	
 	/*EDITAR EDITORA*/
 	public void selecionarEditora(Editora edit) {
 		String sql = "SELECT * FROM tbl_editoras WHERE IdEditora = ?";
@@ -88,7 +84,6 @@ public class editoraDAO {
 			connectionFactory.closeConnection(con,stmt,rs);
 		}
 	}
-	
 	//CRUD **UPDATE EDITORA**
 	public boolean update (Editora edit) {
 		String sql = "UPDATE tbl_editoras set NomeEditora=? where IdEditora = ?";
@@ -109,7 +104,6 @@ public class editoraDAO {
 		
 		
 	}
-	
 	//CRUD **DELETE EDITORA**
 	public boolean delete(Editora edit) {
 		String sql = "DELETE FROM tbl_editoras WHERE IdEditora = ? ";
@@ -129,7 +123,4 @@ public class editoraDAO {
 		}
 	}
 	
-	
-	
-	
-	}
+}

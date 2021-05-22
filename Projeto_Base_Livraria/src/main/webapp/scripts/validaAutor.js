@@ -19,6 +19,7 @@ function validarAutor(){
 
 function confirmar(idAutor){
 	let resposta = confirm("Confirma a exclusão deste autor?")
+	
 	if(resposta === true){
 		window.location.href = "deleteAutor?idAutor=" + idAutor
 	}

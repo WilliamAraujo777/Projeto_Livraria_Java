@@ -17,8 +17,6 @@
 				<td><input type="number" name="idAutor" id="campos2" readonly 
 				value="<%out.print(request.getAttribute("idAutor"));%>"></td>
 			</tr>
-			
-			
 				<td><input type="text" name="nomeAutor" class="campos" value="<%out.print(request.getAttribute("nomeAutor"));%>"></td>
 				<td><input type="text" name="SobrenomeAutor" class="campos" value="<%out.print(request.getAttribute("SobrenomeAutor"));%>"></td>
 			</tr>
