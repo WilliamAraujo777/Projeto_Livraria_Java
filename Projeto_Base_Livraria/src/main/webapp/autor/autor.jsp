@@ -37,12 +37,15 @@
 		    		<td><%=listaAutores.get(i).getIdAutor()%></td>
 		    		<td><%=listaAutores.get(i).getNomeAutor()%></td>
 		    		<td><%=listaAutores.get(i).getSobrenomeAutor()%></td>
+		    		<td><a href="selectAutor?idAutor=<%=listaAutores.get(i).getIdAutor()%>" class="botao1">Editar</a>
+		    		<a href="javascript: confirmar(<%=listaAutores.get(i).getIdAutor()%>)" class="botao2">Excluir </a>
+		    		</td>
 		 
 		    	</tr>
 		    <%}%>
 		</tbody>		
 	</table>
-	
+		<script src="scripts/validaAutor.js"></script>
 	
 </body>
 </html>

@@ -107,15 +107,15 @@ public class EditoraController extends HttpServlet {
 			
 			//recebendo id da editora a ser excluída
 			String idEdit = request.getParameter("idEditora");
-			System.out.println(idEdit);
+				
 			//setar variavel na classe beans de editora
-			//edit.setIdEditora(Integer.parseInt(idEdit));
+			edit.setIdEditora(Integer.parseInt(idEdit));
 			
 			//executar método delete da classe editora DAO passando o objeto de editora como parâmetro
-			//editDAO.delete(edit);
+			editDAO.delete(edit);
 			
 			//encaminha para a pagina das editoras 
-			//response.sendRedirect("editoras");
+			response.sendRedirect("editoras");
 
 		}
 	

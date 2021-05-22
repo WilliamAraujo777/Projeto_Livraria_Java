@@ -19,7 +19,7 @@ function validarEditora(){
 function confirmar(idEditora){
 	let resposta = confirm("Confirma a exclusão deste assunto? (LEMBRANDO QUE TODOS OS LIVROS RELACIONADOS A ESTA EDITORA TAMBÉM SERÃO APAGADOS!!)")
 	if(resposta === true){
-		window.location.href = "deleteEditora?idEditora" + idEditora
+		window.location.href = "deleteEditora?idEditora=" + idEditora
 	}
 	
 }

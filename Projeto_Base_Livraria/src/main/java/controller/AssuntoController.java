@@ -104,14 +104,15 @@ public class AssuntoController extends HttpServlet {
 		
 		//recebendo id do assunto a ser excluído
 		String idAssunto = request.getParameter("idAssunto");
+		System.out.println(idAssunto);
 		//setar variavel na classe beans de assunto
-		assunto.setIdAssunto(Integer.parseInt(idAssunto));
+		//assunto.setIdAssunto(Integer.parseInt(idAssunto));
 		
 		//executar método delete da classe assunto DAO passando o objeto de assunto como parâmetro
-		assuntoDAO.delete(assunto);
-		
+		//assuntoDAO.delete(assunto);
+		//
 		//encaminha para a pagina dos assuntos 
-		response.sendRedirect("assuntos");
+		//response.sendRedirect("assuntos");
 		
 	}
 }
