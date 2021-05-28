@@ -21,7 +21,9 @@ public class EditoraController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	editoraDAO editDAO = new editoraDAO();
 	Editora edit = new Editora();
-
+	String url = "";
+	
+	
 	public EditoraController() {
 		super();
 	}
@@ -34,6 +36,7 @@ public class EditoraController extends HttpServlet {
 			editoras(request, response);
 		}else if (action.equals("/chamarNovaEditora")) {
 			chamaEdit(request, response);
+			url = request.getHeader ("referer");
 		}else if (action.equals("/insertEditora")) {
 			novaEditora(request, response);
 		}else if (action.equals("/selectEditora")) {
@@ -50,8 +53,7 @@ public class EditoraController extends HttpServlet {
 			throws ServletException, IOException {
 		
 		response.sendRedirect("editora/novaEditora.html");
-		String url = request.getHeader ("referer");
-		System.out.println(url); 
+	
 
 	}
 	protected void editoras(HttpServletRequest request, HttpServletResponse response)
@@ -66,18 +68,17 @@ public class EditoraController extends HttpServlet {
 	// Nova editora
 	protected void novaEditora(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String url = request.getHeader ("referer");
-		
-		System.out.println(url);
-		
-		
+
+			
 		edit.setEditora(request.getParameter("nomeEditora"));
 		editDAO.save(edit);
 		
-		if(url == "http://localhost:8080/Projeto_Base_Livraria/editoras") {
+		System.out.println(url);
+		
+		if(url.equals("http://localhost:8080/Projeto_Base_Livraria/editoras")) {
 			response.sendRedirect("editoras");
-		} else {
-			System.out.println("vish");
+		} else if(url.equals("http://localhost:8080/Projeto_Base_Livraria/livro/novoLivro.jsp")){
+			response.sendRedirect("livro/novoLivro.jsp");
 		}
 		
 
