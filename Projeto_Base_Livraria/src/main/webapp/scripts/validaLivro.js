@@ -10,7 +10,7 @@ function validar(){
 	let dataPub = frmLivro.dataPub.value
 	let precoLivro = frmLivro.preco.value
 	let qtdPag = frmLivro.qtdPag.value
-	let nomeEdit = frmLivro.nomeEdit.value
+	//let nomeEdit = frmLivro.nomeEdit.value
 	let nomeAssunto = frmLivro.nomeAssunto.value
 	
 	if(nomeLivro === "" ){
@@ -33,10 +33,7 @@ function validar(){
 		alert('Preencha as quantidades de páginas!')
 		frmLivro.qtdPag.focus()
 		return false
-	}else if (nomeEdit === ""){
-		alert('Preencha o campo de editora!')
-		frmLivro.nomeEdit.focus()
-		return false
+	
 	}else if (nomeAssunto === ""){
 		alert('Preencha o campo de assunto!')
 		frmLivro.nomeAssunto.focus()

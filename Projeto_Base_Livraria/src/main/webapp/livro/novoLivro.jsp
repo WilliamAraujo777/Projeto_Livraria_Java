@@ -6,7 +6,6 @@
     <%@ page import= "model.DAO.editoraDAO" %> 
     <%@ page import= "java.util.ArrayList" %>
     <%
-    	@SuppressWarnings("unchecked")	
     	editoraDAO editDAO = new editoraDAO();
     %>
     
@@ -23,7 +22,7 @@
 </head>
 <body>
 	<h1>Inserir um novo livro</h1>
-	<form name="frmLivro" action="insertLivro">
+	<form name="frmLivro" action="../insertLivro">
 		<table>
 			<tr>
 				<td><input type="text" name="nomeLivro" placeholder="Nome do livro" class="campos"></td>
@@ -44,9 +43,10 @@
 			
 			<tr>
 				<td>
-				<select class="campos" id="editora">
+				<select class="campos" id="editora" name="nomeEdit">
+				<option>
 				<%for (Editora edit: editDAO.listarEditora()){%>
-				<option><%=edit.getEditora()%></option>
+				<option value=<%=edit.getIdEditora()%>><%=edit.getEditora()%></option>
 				<%}%> 
 				</select>
 					<a href="editora/novaEditora.html" class="botao1">Nova Editora</a>
@@ -61,11 +61,11 @@
 				</td>
 			</tr>
 		</table>
-		<input type="button" value="Adicionar" class="botao1" onClick="validar()" >
-		<a href="livros" class="botao1">Voltar</a>
+		<input type="submit" value="Adicionar" class="botao1" >
+		<a href="../livros" class="botao1">Voltar</a>
 	</form>
 	
-<script src="scripts/validaLivro.js"> </script>
+<script src="../scripts/validaLivro.js"> </script>
 <script>
 $(document).ready(function() {
 $('#editora').select2();
