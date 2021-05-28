@@ -1,3 +1,16 @@
+
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+    
+    <%@ page import= "model.beans.Editora" %> 
+    <%@ page import= "java.util.ArrayList" %>
+    <%
+    	@SuppressWarnings("unchecked")	
+    	ArrayList<Editora> listaEditoras = (ArrayList<Editora>) request.getAttribute("editoras");
+    %>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -23,11 +36,11 @@
 				<td><input type="text" name="dataPub" class="campos"></td>
 			</tr>
 			<tr>
-				<td><input type="number" step="0.01" name="preco" step="0.01" placeholder="Preço do Livro" class="campos"></td>
+				<td><input type="number" step="0.01" name="preco" step="0.01" placeholder="PreÃ§o do Livro" class="campos"></td>
 			</tr>
 			
 			<tr>
-				<td><input type="number" name="qtdPag" placeholder="Quantidade de páginas" class="campos"></td>
+				<td><input type="number" name="qtdPag" placeholder="Quantidade de pÃ¡ginas" class="campos"></td>
 			</tr>
 			
 			<tr>
