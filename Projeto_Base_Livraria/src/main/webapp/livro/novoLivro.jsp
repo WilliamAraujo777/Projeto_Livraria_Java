@@ -4,12 +4,15 @@
     
     <%@ page import= "model.beans.Editora" %> 
     <%@ page import= "model.beans.Assunto" %> 
+     <%@ page import= "model.beans.Autores" %> 
     <%@ page import= "model.DAO.editoraDAO" %> 
+     <%@ page import= "model.DAO.autorDAO" %> 
     <%@ page import= "model.DAO.assuntoDAO" %> 
     <%@ page import= "java.util.ArrayList" %>
     <%
     	editoraDAO editDAO = new editoraDAO();
     	assuntoDAO assuntoDAO = new assuntoDAO();
+    	autorDAO autorDAO = new autorDAO();
     %>
     
 <!DOCTYPE html>
@@ -46,7 +49,7 @@
 			
 			<tr>
 				<td>
-				<select class="campos" id="select2" name="nomeEdit">
+				<select id="select2" name="nomeEdit">
 				<option>
 				<%for (Editora edit: editDAO.listarEditora()){%>
 				<option value=<%=edit.getIdEditora()%>><%=edit.getEditora()%></option>
@@ -57,10 +60,20 @@
 			
 			<tr>
 				<td>
-				<select class="campos" id="select3" name="nomeAssunto">
+				<select id="select3" name="nomeAssunto">
 				<option>
 				<%for (Assunto assunto: assuntoDAO.listarAssunto()){%>
 				<option value=<%=assunto.getIdAssunto()%>><%=assunto.getAssunto()%></option>
+				<%}%> 
+				</select>		
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<select id="select4" name="nomeAutor" multiple="multiple">
+				<option>
+				<%for (Autores autor: autorDAO.listarAutor()){%>
+				<option value=<%=autor.getIdAutor()%>><%=autor.getNomeAutor()%></option>
 				<%}%> 
 				</select>		
 				</td>
@@ -82,7 +95,13 @@ $('#select3').select2({
     placeholder: "Selecione um assunto",
     allowClear: true
  
-});;
+})
+$('#select4').select2({
+    placeholder: "Selecione um autor",
+    allowClear: true
+ 
+})
+
 });
 </script>
 
