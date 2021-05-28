@@ -21,7 +21,7 @@
 	<h1>Livros</h1>
 	
 
-	<a href="livro/novoLivro.html" class="botao1">Novo Livro</a>
+	<a href="livro/novoLivro.jsp" action="editoras" class="botao1">Novo Livro</a>
 	<a href="index.html" class="botao1">Menu</a>
 	<table id="tabela">
 		<thead>
