@@ -18,7 +18,7 @@
 				value="<%out.print(request.getAttribute("idEditora"));%>"></td>
 			</tr>
 			
-			
+			<tr>
 				<td><input type="text" name="nomeEditora" class="campos" value="<%out.print(request.getAttribute("nomeEditora"));%>"></td>
 			</tr>
 		</table>

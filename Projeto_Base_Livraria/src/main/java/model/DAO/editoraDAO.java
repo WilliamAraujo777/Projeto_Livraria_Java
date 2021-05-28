@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connection.connectionFactory;
-import model.beans.Assunto;
 import model.beans.Editora;
 
 public class editoraDAO {
@@ -62,7 +61,7 @@ public class editoraDAO {
 			connectionFactory.closeConnection(con);
 		}
 	}
-	/*EDITAR EDITORA*/
+	//CRUD **UPDATE EDITORA**
 	public void selecionarEditora(Editora edit) {
 		String sql = "SELECT * FROM tbl_editoras WHERE IdEditora = ?";
 		con = connectionFactory.getConnection();
@@ -84,7 +83,7 @@ public class editoraDAO {
 			connectionFactory.closeConnection(con,stmt,rs);
 		}
 	}
-	//CRUD **UPDATE EDITORA**
+	
 	public boolean update (Editora edit) {
 		String sql = "UPDATE tbl_editoras set NomeEditora=? where IdEditora = ?";
 		con = connectionFactory.getConnection();

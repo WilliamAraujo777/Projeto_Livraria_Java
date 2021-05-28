@@ -28,6 +28,7 @@
 				<th>ID</th>
 				<th>Nome do autor</th>
 				<th>Sobrenome do autor</th>
+				<th>Opções</th>
 			</tr>
 		</thead>
 		

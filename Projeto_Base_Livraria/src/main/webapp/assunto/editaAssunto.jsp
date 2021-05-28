@@ -18,11 +18,11 @@
 				value="<%out.print(request.getAttribute("idAssunto"));%>"></td>
 			</tr>
 			
-			
+			<tr>
 				<td><input type="text" name="nomeAssunto" class="campos" value="<%out.print(request.getAttribute("nomeAssunto"));%>"></td>
 			</tr>
 		</table>
-		<input type="button" value="Salvar" class="botao1" onClick="validarAssunto()">
+		
 		<a href="assuntos" class="botao1">Voltar</a>
 	</form>
 

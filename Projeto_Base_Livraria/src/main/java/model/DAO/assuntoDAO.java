@@ -9,8 +9,7 @@ import java.util.List;
 
 import connection.connectionFactory;
 import model.beans.Assunto;
-import model.beans.Editora;
-import model.beans.Livros;
+
 
 
 

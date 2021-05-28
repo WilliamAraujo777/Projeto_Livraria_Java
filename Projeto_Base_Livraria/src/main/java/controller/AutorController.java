@@ -14,7 +14,7 @@ import model.DAO.autorDAO;
 import model.beans.Autores;
 
 
-@WebServlet(urlPatterns = { "/AutorController","/autores","/insertAutor"})
+@WebServlet(urlPatterns = { "/AutorController","/autores","/insertAutor","/selectAutor","/updateAutor","/deleteAutor"})
 public class AutorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -34,6 +34,12 @@ public class AutorController extends HttpServlet {
 			novoAutor(request, response);
 		}else if (action.equals("/autores")) {
 			autores(request, response);
+		}else if (action.equals("/selectAutor")) {
+			listarAutor(request, response);
+		}else if (action.equals("/updateAutor")) {
+			editarAutor(request, response);
+		}else if (action.equals("/deleteAutor")) {
+			deletarAutor(request, response);
 		}
 	}
 	
@@ -58,4 +64,63 @@ public class AutorController extends HttpServlet {
 		response.sendRedirect("autores");
 	}
 
-}
+	//Editar autor
+			protected void listarAutor(HttpServletRequest request, HttpServletResponse response)
+					throws ServletException, IOException {
+				//recebendo id do autor a ser alterado
+				int idAutor = (Integer.parseInt(request.getParameter("idAutor")));
+				
+				autor.setIdAutor(idAutor);
+				
+				autorDAO.selecionarAutor(autor);
+				
+				//setando atributo do formulario com o conteudo do autor
+				request.setAttribute("idAutor",autor.getIdAutor());
+				request.setAttribute("nomeAutor",autor.getNomeAutor());
+				request.setAttribute("sobrenomeAutor",autor.getSobrenomeAutor());
+				
+				//Encaminhar ao documento editaAutor.jsp
+				RequestDispatcher rd = request.getRequestDispatcher("autor/editaAutor.jsp");
+				rd.forward(request,response);
+			
+			}
+			
+			protected void editarAutor(HttpServletRequest request, HttpServletResponse response)
+					throws ServletException, IOException {
+				
+			
+				
+				autor.setIdAutor(Integer.parseInt(request.getParameter("idAutor")));
+				
+				autor.setNomeAutor(request.getParameter("nomeAutor"));
+				autor.setSobrenomeAutor(request.getParameter("sobrenomeAutor"));
+				
+				
+				//executar método do autorDAO
+				autorDAO.update(autor);
+				
+				//redirecionar a pagina autor.jsp, mostrando todas as alterações
+				response.sendRedirect("autores");
+
+			}
+			
+			//Remover autor
+			protected void deletarAutor(HttpServletRequest request, HttpServletResponse response)
+					throws ServletException, IOException {
+				
+				//recebendo id do autor a ser excluído
+				String idAutor = request.getParameter("idAutor");
+					
+				//setar variavel na classe beans de autor
+				autor.setIdAutor(Integer.parseInt(idAutor));
+				
+				//executar método delete da classe editora DAO passando o objeto de editora como parâmetro
+				autorDAO.delete(autor);
+				
+				//encaminha para a pagina dos autores
+				response.sendRedirect("autores");
+
+			}
+		
+		
+	}

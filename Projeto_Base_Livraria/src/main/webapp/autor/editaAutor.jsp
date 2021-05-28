@@ -11,14 +11,15 @@
 </head>
 <body>
 	<h1>Editar Autor</h1>
-	<form name="frmEditora" action="updateEditora">
+	<form name="frmAutor" action="updateAutor">
 		<table>
 			<tr>
 				<td><input type="number" name="idAutor" id="campos2" readonly 
 				value="<%out.print(request.getAttribute("idAutor"));%>"></td>
 			</tr>
+			<tr>
 				<td><input type="text" name="nomeAutor" class="campos" value="<%out.print(request.getAttribute("nomeAutor"));%>"></td>
-				<td><input type="text" name="SobrenomeAutor" class="campos" value="<%out.print(request.getAttribute("SobrenomeAutor"));%>"></td>
+				<td><input type="text" name="sobrenomeAutor" class="campos" value="<%out.print(request.getAttribute("sobrenomeAutor"));%>"></td>
 			</tr>
 		</table>
 		<input type="button" value="Salvar" class="botao1" onClick="validarAutor()">
