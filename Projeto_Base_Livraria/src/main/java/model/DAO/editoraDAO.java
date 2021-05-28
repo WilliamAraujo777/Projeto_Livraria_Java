@@ -75,7 +75,6 @@ public class editoraDAO {
 			while(rs.next()) {
 				edit.setIdEditora(rs.getInt(1));
 				edit.setEditora(rs.getString(2));
-			
 			}
 		} catch (SQLException e) {
 			System.err.println("Erro: " +e);

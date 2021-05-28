@@ -43,13 +43,13 @@
 			
 			<tr>
 				<td>
-				<select class="campos" id="editora" name="nomeEdit">
+				<select class="ls-select" placeholder="Selecione um estado" id="editora" name="nomeEdit">
 				<option>
 				<%for (Editora edit: editDAO.listarEditora()){%>
 				<option value=<%=edit.getIdEditora()%>><%=edit.getEditora()%></option>
 				<%}%> 
 				</select>
-					<a href="editora/novaEditora.html" class="botao1">Nova Editora</a>
+					<a href="../chamarNovaEditora" class="botao1">Nova Editora</a>
 				</td>
 			</tr>
 			

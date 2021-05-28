@@ -16,7 +16,7 @@ import model.DAO.editoraDAO;
 import model.beans.Editora;
 
 
-@WebServlet(urlPatterns = { "/EditoraController","/editoras","/insertEditora","/selectEditora","/updateEditora","/deleteEditora" })
+@WebServlet(urlPatterns = { "/EditoraController","/chamarNovaEditora","/editoras","/insertEditora","/selectEditora","/updateEditora","/deleteEditora" })
 public class EditoraController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	editoraDAO editDAO = new editoraDAO();
@@ -32,6 +32,8 @@ public class EditoraController extends HttpServlet {
 		System.out.println(action);
 		 if (action.equals("/editoras")) {
 			editoras(request, response);
+		}else if (action.equals("/chamarNovaEditora")) {
+			chamaEdit(request, response);
 		}else if (action.equals("/insertEditora")) {
 			novaEditora(request, response);
 		}else if (action.equals("/selectEditora")) {
@@ -44,6 +46,14 @@ public class EditoraController extends HttpServlet {
 	}
 
 	// Listar editoras
+	protected void chamaEdit(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		response.sendRedirect("editora/novaEditora.html");
+		String url = request.getHeader ("referer");
+		System.out.println(url); 
+
+	}
 	protected void editoras(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		List<Editora> listaEditoras = editDAO.listarEditora();
@@ -56,11 +66,21 @@ public class EditoraController extends HttpServlet {
 	// Nova editora
 	protected void novaEditora(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String url = request.getHeader ("referer");
+		
+		System.out.println(url);
+		
 		
 		edit.setEditora(request.getParameter("nomeEditora"));
 		editDAO.save(edit);
+		
+		if(url == "http://localhost:8080/Projeto_Base_Livraria/editoras") {
+			response.sendRedirect("editoras");
+		} else {
+			System.out.println("vish");
+		}
+		
 
-		response.sendRedirect("editoras");
 	}
 	
 	//Editar editora
@@ -80,7 +100,7 @@ public class EditoraController extends HttpServlet {
 			//Encaminhar ao documento editaEditora.jsp
 			RequestDispatcher rd = request.getRequestDispatcher("editora/editaEditora.jsp");
 			rd.forward(request,response);
-		
+			
 		}
 		
 		protected void editarEditora(HttpServletRequest request, HttpServletResponse response)
