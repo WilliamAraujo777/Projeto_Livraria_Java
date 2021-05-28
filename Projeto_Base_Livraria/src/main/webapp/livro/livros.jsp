@@ -47,8 +47,8 @@
 		    		<td><%=listaLivros.get(i).getDataPub()%></td>
 		    		<td><%=listaLivros.get(i).getPreco()%></td>
 		    		<td><%=listaLivros.get(i).getPaginas()%></td>
-		    		<td><%=listaLivros.get(i).getEditora().getIdEditora()%></td>
-		    		<td><%=listaLivros.get(i).getAssunto().getIdAssunto()%></td>
+		    		<td><%=listaLivros.get(i).getEditora().getEditora()%></td>
+		    		<td><%=listaLivros.get(i).getAssunto().getAssunto()%></td>
 		    		<td><a href="selectLivro?idLivro=<%=listaLivros.get(i).getIdLivro()%>" class="botao1">Editar</a>
 		    		<a href="javascript: confirmar(<%=listaLivros.get(i).getIdLivro()%>)" class="botao2">Excluir </a>
 		    		</td>

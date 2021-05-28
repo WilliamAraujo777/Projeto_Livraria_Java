@@ -58,27 +58,30 @@ public class livroDAO {
 	/* LISTAR TODOS OS LIVROS */
 	public List<Livros> listarLivros() {
 		List<Livros> livros = new ArrayList<>();
-		String read = "select * from tbl_livros";
+		String read = "SELECT l.idLivro,l.nomeLivro,l.ISBN13,l.dataPub,l.precoLivro,l.numeroPaginas,e.NomeEditora,a.Assunto FROM tbl_livros AS l "
+				+ "JOIN tbl_editoras AS e "
+				+ "JOIN tbl_assuntos AS a ON l.idEditora = e.IdEditora AND "
+				+ "a.IdAssunto = l.idAssunto order by l.idLivro";
 		con = connectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
 			stmt = con.prepareStatement(read);
 			rs = stmt.executeQuery();
-			//o laço abaixo sera executado enquanto houver contatos
+			//o laco abaixo sera executado enquanto houver l
 			while(rs.next()) {
 				Livros livro = new Livros();
 				Editora editora = new Editora();
 				Assunto assunto = new Assunto();
 				
-				livro.setIdLivro(rs.getInt("Idlivro"));
-				livro.setNomeLivro(rs.getString("nomeLivro"));
-				livro.setIsbn13(rs.getString("isbn13"));
-				livro.setDataPub(rs.getString("dataPub"));
-				livro.setPreco(rs.getDouble("precoLivro"));
-				livro.setPaginas(rs.getInt("numeroPaginas"));
-				editora.setIdEditora(rs.getInt("idEditora"));
-				assunto.setIdAssunto(rs.getInt("idAssunto"));
+				livro.setIdLivro(rs.getInt(1));
+				livro.setNomeLivro(rs.getString(2));
+				livro.setIsbn13(rs.getString(3));
+				livro.setDataPub(rs.getString(4));
+				livro.setPreco(rs.getDouble(5));
+				livro.setPaginas(rs.getInt(6));
+				editora.setEditora(rs.getString(7));
+				assunto.setAssunto(rs.getString(8));
 				
 				livro.setEditora(editora);
 				livro.setAssunto(assunto);
