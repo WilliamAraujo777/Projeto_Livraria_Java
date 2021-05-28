@@ -10,7 +10,7 @@ function validar(){
 	let dataPub = frmLivro.dataPub.value
 	let precoLivro = frmLivro.preco.value
 	let qtdPag = frmLivro.qtdPag.value
-	//let nomeEdit = frmLivro.nomeEdit.value
+	let nomeEdit = frmLivro.nomeEdit.value;
 	let nomeAssunto = frmLivro.nomeAssunto.value
 	
 	if(nomeLivro === "" ){
@@ -34,9 +34,14 @@ function validar(){
 		frmLivro.qtdPag.focus()
 		return false
 	
+	}else if (nomeEdit === ""){
+		alert('Selecione uma editora!')
+
+		return false
+	
 	}else if (nomeAssunto === ""){
-		alert('Preencha o campo de assunto!')
-		frmLivro.nomeAssunto.focus()
+		alert('Selecione um assunto!')
+
 		return false
 	}else{
 		document.forms["frmLivro"].submit()

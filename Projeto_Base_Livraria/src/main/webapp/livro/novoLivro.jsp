@@ -3,10 +3,13 @@
     pageEncoding="utf-8"%>
     
     <%@ page import= "model.beans.Editora" %> 
+    <%@ page import= "model.beans.Assunto" %> 
     <%@ page import= "model.DAO.editoraDAO" %> 
+    <%@ page import= "model.DAO.assuntoDAO" %> 
     <%@ page import= "java.util.ArrayList" %>
     <%
     	editoraDAO editDAO = new editoraDAO();
+    	assuntoDAO assuntoDAO = new assuntoDAO();
     %>
     
 <!DOCTYPE html>
@@ -34,41 +37,52 @@
 				<td><input type="text" name="dataPub" class="campos"></td>
 			</tr>
 			<tr>
-				<td><input type="number" step="0.01" name="preco" step="0.01" placeholder="PreÃ§o do Livro" class="campos"></td>
+				<td><input type="number" step="0.01" name="preco" step="0.01" placeholder="Preco do Livro" class="campos"></td>
 			</tr>
 			
 			<tr>
-				<td><input type="number" name="qtdPag" placeholder="Quantidade de pÃ¡ginas" class="campos"></td>
+				<td><input type="number" name="qtdPag" placeholder="Quantidade de paginas" class="campos"></td>
 			</tr>
 			
 			<tr>
 				<td>
-				<select class="ls-select" placeholder="Selecione um estado" id="editora" name="nomeEdit">
+				<select class="campos" id="select2" name="nomeEdit">
 				<option>
 				<%for (Editora edit: editDAO.listarEditora()){%>
 				<option value=<%=edit.getIdEditora()%>><%=edit.getEditora()%></option>
 				<%}%> 
 				</select>
-					<a href="../chamarNovaEditora" class="botao1">Nova Editora</a>
 				</td>
 			</tr>
 			
 			<tr>
 				<td>
-				<input type="number" name="nomeAssunto" placeholder="Assunto" class="campos">
-					<a href="assunto/novoAssunto.html" class="botao1">Novo Assunto</a>
-				
+				<select class="campos" id="select3" name="nomeAssunto">
+				<option>
+				<%for (Assunto assunto: assuntoDAO.listarAssunto()){%>
+				<option value=<%=assunto.getIdAssunto()%>><%=assunto.getAssunto()%></option>
+				<%}%> 
+				</select>		
 				</td>
 			</tr>
 		</table>
-		<input type="submit" value="Adicionar" class="botao1" >
+		<input type="button" value="Adicionar" class="botao1" onClick="validar()">
 		<a href="../livros" class="botao1">Voltar</a>
 	</form>
 	
 <script src="../scripts/validaLivro.js"> </script>
 <script>
 $(document).ready(function() {
-$('#editora').select2();
+$('#select2').select2({
+    placeholder: "Selecione uma editora",
+    allowClear: true
+ 
+})
+$('#select3').select2({
+    placeholder: "Selecione um assunto",
+    allowClear: true
+ 
+});;
 });
 </script>
 

@@ -16,7 +16,7 @@ import model.DAO.editoraDAO;
 import model.beans.Editora;
 
 
-@WebServlet(urlPatterns = { "/EditoraController","/chamarNovaEditora","/editoras","/insertEditora","/selectEditora","/updateEditora","/deleteEditora" })
+@WebServlet(urlPatterns = { "/EditoraController","/editoras","/insertEditora","/selectEditora","/updateEditora","/deleteEditora" })
 public class EditoraController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	editoraDAO editDAO = new editoraDAO();
@@ -34,9 +34,6 @@ public class EditoraController extends HttpServlet {
 		System.out.println(action);
 		 if (action.equals("/editoras")) {
 			editoras(request, response);
-		}else if (action.equals("/chamarNovaEditora")) {
-			chamaEdit(request, response);
-			url = request.getHeader ("referer");
 		}else if (action.equals("/insertEditora")) {
 			novaEditora(request, response);
 		}else if (action.equals("/selectEditora")) {
@@ -49,13 +46,6 @@ public class EditoraController extends HttpServlet {
 	}
 
 	// Listar editoras
-	protected void chamaEdit(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		response.sendRedirect("editora/novaEditora.html");
-	
-
-	}
 	protected void editoras(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		List<Editora> listaEditoras = editDAO.listarEditora();
@@ -75,11 +65,7 @@ public class EditoraController extends HttpServlet {
 		
 		System.out.println(url);
 		
-		if(url.equals("http://localhost:8080/Projeto_Base_Livraria/editoras")) {
-			response.sendRedirect("editoras");
-		} else if(url.equals("http://localhost:8080/Projeto_Base_Livraria/livro/novoLivro.jsp")){
-			response.sendRedirect("livro/novoLivro.jsp");
-		}
+		response.sendRedirect("editoras");
 		
 
 	}
