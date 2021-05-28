@@ -5,6 +5,9 @@
 <title>Livraria Projeto Base</title>
 <link rel="icon" href="../imagens/livros.png">
 <link rel="stylesheet" href="../style.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 <body>
 	<h1>Inserir um novo livro</h1>
@@ -29,7 +32,8 @@
 			
 			<tr>
 				<td>
-				<input type="number" name="nomeEdit" placeholder="Nome da editora" class="campos">
+				<!--  <input type="number" name="nomeEdit" placeholder="Nome da editora" class="campos">-->
+				<select id="editora" class="campos"> <option>Huehue</option><option>zika</option><option>blau</option><option>zus</option><option>sen</option> </select>
 					<a href="../editora/novaEditora.html" class="botao1">Nova Editora</a>
 				</td>
 			</tr>
@@ -47,6 +51,12 @@
 	</form>
 	
 <script src="../scripts/validaLivro.js"> </script>
+<script>
+$(document).ready(function() {
+$('#editora').select2();
+});
+</script>
+
 
 </body>
 </html>
