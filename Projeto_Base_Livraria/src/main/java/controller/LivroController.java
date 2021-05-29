@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.DAO.livroDAO;
 import model.beans.Assunto;
-
+import model.beans.Autores;
 import model.beans.Editora;
 import model.beans.Livros;
 
@@ -23,6 +23,7 @@ public class LivroController extends HttpServlet {
 	livroDAO livroDao = new livroDAO();
 	Livros livro = new Livros();
 	Editora edit = new Editora();
+	Autores autor = new Autores();
 	Assunto assunto = new Assunto();
 
 	public LivroController() {
@@ -70,7 +71,11 @@ public class LivroController extends HttpServlet {
 		livro.setPaginas(Integer.parseInt(request.getParameter("qtdPag")));
 		livro.setEditora(edit);
 		livro.setAssunto(assunto);
-		livroDao.save(livro);
+		
+		autor.setIdAutor(Integer.parseInt(request.getParameter("nomeAutor")));
+		
+		
+		livroDao.save(livro, autor);
 
 		response.sendRedirect("livros");
 	}

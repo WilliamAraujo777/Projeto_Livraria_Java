@@ -27,7 +27,8 @@ public class livroDAO {
 	
 	
 	/* INSERIR LIVROS */
-	public boolean save(Livros livro) {
+
+	public boolean save(Livros livro, Autores autor) {
 		
 		String sql = "INSERT INTO tbl_livros (nomeLivro , ISBN13, dataPub, precoLivro, numeroPaginas, idEditora, idAssunto)"
 				+ "VALUES (?,?,?,?,?,?,?)";
@@ -45,7 +46,17 @@ public class livroDAO {
 			stmt.setInt(6, livro.getEditora().getIdEditora());
 			stmt.setInt(7, livro.getAssunto().getIdAssunto());
 			stmt.executeUpdate(); 
-			return true;
+		    
+			sql = "SELECT LAST_INSERT_ID() INTO @id";
+            stmt = con.prepareStatement(sql);
+            stmt.execute();
+            sql ="INSERT INTO tbl_livrosautores (idLivro , idAutor)"
+    				+ "VALUES (@id,?)";
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, autor.getIdAutor());
+            stmt.execute();
+            return true;
+			
 		} catch (SQLException e) {
 			System.err.println("Erro: " +e);
 			return false;
@@ -55,31 +66,7 @@ public class livroDAO {
 		
 		
 	}
-	
-public boolean saveLivroAutor(Livros livro) {
-		Autores autor = new Autores();
-	
-		String sql = "INSERT INTO tbl_livrosautores (idLivro , idAutor)"
-				+ "VALUES (?,?)";
-		
-		con = connectionFactory.getConnection();
-		PreparedStatement stmt = null;
-		
-		try {
-			stmt = con.prepareStatement(sql);
-			stmt.setInt(1, livro.getIdLivro());
-			stmt.setInt(2, autor.getIdAutor());
-			stmt.executeUpdate(); 
-			return true;
-		} catch (SQLException e) {
-			System.err.println("Erro: " +e);
-			return false;
-		}finally {
-			connectionFactory.closeConnection(con,stmt);
-		}
-		
-		
-	}
+
 	
 	
 	/* LISTAR TODOS OS LIVROS */
