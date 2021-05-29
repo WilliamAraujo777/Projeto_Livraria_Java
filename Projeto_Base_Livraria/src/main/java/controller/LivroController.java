@@ -74,10 +74,13 @@ public class LivroController extends HttpServlet {
 		
 		autor.setIdAutor(Integer.parseInt(request.getParameter("nomeAutor")));
 		
+		System.out.println(request.getParameterValues("nomeAutor"));
 		
-		livroDao.save(livro, autor);
+		
+		
+		//livroDao.save(livro, autor);
 
-		response.sendRedirect("livros");
+		//response.sendRedirect("livros");
 	}
 	
 	//Editar Livro

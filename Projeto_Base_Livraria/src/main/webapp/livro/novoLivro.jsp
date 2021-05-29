@@ -79,7 +79,7 @@
 				</td>
 			</tr>
 		</table>
-		<input type="button" value="Adicionar" class="botao1" onClick="validar()">
+		<input type="submit" value="Adicionar" class="botao1" onClick="validar()">
 		<a href="../livros" class="botao1">Voltar</a>
 	</form>
 	
