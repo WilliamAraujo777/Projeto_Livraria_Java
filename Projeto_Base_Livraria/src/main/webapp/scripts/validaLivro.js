@@ -12,6 +12,7 @@ function validar(){
 	let qtdPag = frmLivro.qtdPag.value
 	let nomeEdit = frmLivro.nomeEdit.value;
 	let nomeAssunto = frmLivro.nomeAssunto.value
+	let nomeAssunto = frmLivro.nomeAutor.value
 	
 	if(nomeLivro === "" ){
 		alert('Preencha o nome do livro!')
@@ -41,6 +42,10 @@ function validar(){
 	
 	}else if (nomeAssunto === ""){
 		alert('Selecione um assunto!')
+
+		return false
+	}else if (nomeAutor === ""){
+		alert('Selecione pelo menos um autor!')
 
 		return false
 	}else{

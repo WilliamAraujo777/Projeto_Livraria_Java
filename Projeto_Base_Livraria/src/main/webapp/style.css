@@ -43,9 +43,12 @@ h1{
 
 .select2-container {
   border-radius:5px;
-  margin-bottom:10px;	
+  outline: none !important;
+  
+  border:1px solid #66bbff;
+  margin-bottom:10px !important;	
   width:320px!important;
-  padding: 5px;
+  
   
    
 }

@@ -73,7 +73,7 @@
 				<select id="select4" name="nomeAutor" multiple="multiple">
 				<option>
 				<%for (Autores autor: autorDAO.listarAutor()){%>
-				<option value=<%=autor.getIdAutor()%>><%=autor.getNomeAutor()%></option>
+				<option value=<%=autor.getIdAutor()%>><%=autor.getNomeAutor()%>&nbsp<%=autor.getSobrenomeAutor()%></option>
 				<%}%> 
 				</select>		
 				</td>

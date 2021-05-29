@@ -9,6 +9,7 @@ import java.util.List;
 
 import connection.connectionFactory;
 import model.beans.Assunto;
+import model.beans.Autores;
 import model.beans.Editora;
 import model.beans.Livros;
 
@@ -54,6 +55,32 @@ public class livroDAO {
 		
 		
 	}
+	
+public boolean saveLivroAutor(Livros livro) {
+		Autores autor = new Autores();
+	
+		String sql = "INSERT INTO tbl_livrosautores (idLivro , idAutor)"
+				+ "VALUES (?,?)";
+		
+		con = connectionFactory.getConnection();
+		PreparedStatement stmt = null;
+		
+		try {
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, livro.getIdLivro());
+			stmt.setInt(2, autor.getIdAutor());
+			stmt.executeUpdate(); 
+			return true;
+		} catch (SQLException e) {
+			System.err.println("Erro: " +e);
+			return false;
+		}finally {
+			connectionFactory.closeConnection(con,stmt);
+		}
+		
+		
+	}
+	
 	
 	/* LISTAR TODOS OS LIVROS */
 	public List<Livros> listarLivros() {
