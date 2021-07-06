@@ -7,7 +7,7 @@
     	@SuppressWarnings("unchecked")	
     	ArrayList<Editora> listaEditoras = (ArrayList<Editora>) request.getAttribute("editoras");
     %>
-    
+        
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -30,7 +30,6 @@
 				<th>Opções</th>
 			</tr>
 		</thead>
-		
 		<tbody>
 			<%for (int i = 0; i < listaEditoras.size(); i++){%>
 		    	<tr>
@@ -39,13 +38,10 @@
 		    		<td><a href="selectEditora?idEditora=<%=listaEditoras.get(i).getIdEditora()%>" class="botao1">Editar</a>
 		    		<a href="javascript: confirmar(<%=listaEditoras.get(i).getIdEditora()%>)" class="botao2">Excluir </a>
 		    		</td>
-		 
 		    	</tr>
 		    <%}%>
 		</tbody>		
 	</table>
 	<script src="scripts/validaEditora.js"></script>
-	
-	
 </body>
 </html>

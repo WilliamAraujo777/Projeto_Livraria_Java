@@ -21,10 +21,10 @@ import model.beans.Livros;
 public class LivroController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	livroDAO livroDao = new livroDAO();
-	Livros livro = new Livros();
-	Editora edit = new Editora();
-	Autores autor = new Autores();
-	Assunto assunto = new Assunto();
+	Livros   livro    = new Livros();
+	Editora  edit     = new Editora();
+	Autores  autor    = new Autores();
+	Assunto  assunto  = new Assunto();
 
 	public LivroController() {
 		super();
@@ -76,11 +76,8 @@ public class LivroController extends HttpServlet {
 		
 		System.out.println(request.getParameterValues("nomeAutor"));
 		
-		
-		
-		//livroDao.save(livro, autor);
-
-		//response.sendRedirect("livros");
+		livroDao.save(livro);
+		response.sendRedirect("livros");
 	}
 	
 	//Editar Livro

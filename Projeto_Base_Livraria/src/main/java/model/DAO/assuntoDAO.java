@@ -10,12 +10,6 @@ import java.util.List;
 import connection.connectionFactory;
 import model.beans.Assunto;
 
-
-
-
-
-
-
 public class assuntoDAO {
 	
 	private Connection con = null;
@@ -24,9 +18,7 @@ public class assuntoDAO {
 	public assuntoDAO() {
 		
 	}
-	
-	
-	
+
 	public boolean save(Assunto assunto) {
 		
 		String sql = "INSERT INTO tbl_assuntos (Assunto) VALUES (?)";
@@ -73,7 +65,7 @@ public class assuntoDAO {
 			connectionFactory.closeConnection(con);
 		}
 	}
-	
+
 	/*EDITAR ASSUNTO*/
 	public void selecionarAssunto(Assunto assunto) {
 		String read2 = "SELECT * FROM tbl_assuntos WHERE IdAssunto = ?";

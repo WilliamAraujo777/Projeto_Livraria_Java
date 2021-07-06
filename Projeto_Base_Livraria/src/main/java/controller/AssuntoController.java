@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.DAO.assuntoDAO;
 import model.beans.Assunto;
 
-
 @WebServlet(urlPatterns = { "/AssuntoController","/assuntos","/insertAssunto","/selectAssunto","/updateAssunto","/deleteAssunto" })
 public class AssuntoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -57,7 +56,6 @@ public class AssuntoController extends HttpServlet {
 		
 		assunto.setAssunto(request.getParameter("nomeAssunto"));
 		assuntoDAO.save(assunto);
-
 		response.sendRedirect("assuntos");
 	}
 	//Editar assunto

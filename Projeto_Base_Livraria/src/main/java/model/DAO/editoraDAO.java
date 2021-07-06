@@ -36,6 +36,8 @@ public class editoraDAO {
 		}
 		
 	}
+	
+	
 	public List<Editora> listarEditora() {
 		List<Editora> editoras = new ArrayList<>();
 		String read = "select * from tbl_editoras";
@@ -58,7 +60,7 @@ public class editoraDAO {
 			System.err.println("Erro: " +e);
 			return null;
 		}finally {
-			connectionFactory.closeConnection(con);
+			connectionFactory.closeConnection(con, stmt, rs);
 		}
 	}
 	//CRUD **UPDATE EDITORA**

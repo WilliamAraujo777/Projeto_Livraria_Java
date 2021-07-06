@@ -6,60 +6,43 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import connection.connectionFactory;
 import model.beans.Assunto;
 import model.beans.Autores;
 import model.beans.Editora;
 import model.beans.Livros;
 
-
-
 public class livroDAO {
 	
 	private Connection con = null;
 	
-	
 	public livroDAO() {
 		
 	}
-	
-	
-	
 	/* INSERIR LIVROS */
 
-	public boolean save(Livros livro, Autores autor) {
+	public boolean save(Livros livro) {
 		
-		String sql = "INSERT INTO tbl_livros (nomeLivro , ISBN13, dataPub, precoLivro, numeroPaginas, idEditora, idAssunto)"
-				+ "VALUES (?,?,?,?,?,?,?)";
-		
-		con = connectionFactory.getConnection();
-		PreparedStatement stmt = null;
-		
-		try {
-			stmt = con.prepareStatement(sql);
-			stmt.setString(1, livro.getNomeLivro());
-			stmt.setString(2, livro.getIsbn13());
-			stmt.setString(3, livro.getDataPub());
-			stmt.setDouble(4, livro.getPreco());
-			stmt.setInt   (5, livro.getPaginas());
-			stmt.setInt(6, livro.getEditora().getIdEditora());
-			stmt.setInt(7, livro.getAssunto().getIdAssunto());
-			stmt.executeUpdate(); 
-		    
-			sql = "SELECT LAST_INSERT_ID() INTO @id";
-            stmt = con.prepareStatement(sql);
-            stmt.execute();
-            sql ="INSERT INTO tbl_livrosautores (idLivro , idAutor)"
-    				+ "VALUES (@id,?)";
-            stmt = con.prepareStatement(sql);
-            stmt.setInt(1, autor.getIdAutor());
-            stmt.execute();
-            return true;
+			String sql = "INSERT INTO tbl_livros (nomeLivro , ISBN13, dataPub, precoLivro, numeroPaginas, idEditora, idAssunto)"
+					+ "VALUES (?,?,?,?,?,?,?)";
 			
-		} catch (SQLException e) {
-			System.err.println("Erro: " +e);
-			return false;
+			con = connectionFactory.getConnection();
+			PreparedStatement stmt = null;
+			
+			try {
+				stmt = con.prepareStatement(sql);
+				stmt.setString(1, livro.getNomeLivro());
+				stmt.setString(2, livro.getIsbn13());
+				stmt.setString(3, livro.getDataPub());
+				stmt.setDouble(4, livro.getPreco());
+				stmt.setInt   (5, livro.getPaginas());
+				stmt.setInt   (6, livro.getEditora().getIdEditora());
+				stmt.setInt   (7, livro.getAssunto().getIdAssunto());
+				stmt.executeUpdate();
+	            return true;
+			} catch (SQLException e) {
+				System.err.println("Erro: " +e);
+				return false;
 		}finally {
 			connectionFactory.closeConnection(con,stmt);
 		}
@@ -170,8 +153,6 @@ public class livroDAO {
 		}finally {
 			connectionFactory.closeConnection(con,stmt);
 		}
-		
-		
 	}
 	
 	//CRUD **DELETE LIVRO**
