@@ -20,7 +20,7 @@
 	<h1>Editoras</h1>
 	
 	
-	<a href="novaEditora.html" class="botao1">Nova Editora</a>
+	<a href="editora/novaEditora.html" class="botao1">Nova Editora</a>
 	<a href="index.html" class="botao1">Menu</a>
 	<table id="tabela">
 		<thead>

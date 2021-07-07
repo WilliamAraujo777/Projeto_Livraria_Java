@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import model.DAO.livroDAO;
+import model.DAO.LivroDAO;
 import model.beans.Assunto;
 import model.beans.Autores;
 import model.beans.Editora;
@@ -20,7 +20,7 @@ import model.beans.Livros;
 @WebServlet(urlPatterns = { "/LivroController", "/livros","/insertLivro","/selectLivro","/updateLivro","/deleteLivro"})
 public class LivroController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	livroDAO livroDao = new livroDAO();
+	LivroDAO livroDao = new LivroDAO();
 	Livros   livro    = new Livros();
 	Editora  edit     = new Editora();
 	Autores  autor    = new Autores();
@@ -50,6 +50,7 @@ public class LivroController extends HttpServlet {
 	//Listar livros
 	protected void livros(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		List<Livros> listaLivros = livroDao.listarLivros();
 		// Encaminhar a lista ao documento livro.jsp
 		request.setAttribute("livros", listaLivros);
@@ -71,11 +72,7 @@ public class LivroController extends HttpServlet {
 		livro.setPaginas(Integer.parseInt(request.getParameter("qtdPag")));
 		livro.setEditora(edit);
 		livro.setAssunto(assunto);
-		
-		autor.setIdAutor(Integer.parseInt(request.getParameter("nomeAutor")));
-		
-		System.out.println(request.getParameterValues("nomeAutor"));
-		
+	
 		livroDao.save(livro);
 		response.sendRedirect("livros");
 	}
@@ -97,8 +94,8 @@ public class LivroController extends HttpServlet {
 		request.setAttribute("dataPub",livro.getDataPub());
 		request.setAttribute("preco",livro.getPreco());
 		request.setAttribute("qtdPag",livro.getPaginas());
-		request.setAttribute("nomeEdit",livro.getEditora().getIdEditora());
-		request.setAttribute("nomeAssunto",livro.getAssunto().getIdAssunto());
+		//request.setAttribute("nomeEdit",livro.getEditora().getEditora());
+		//request.setAttribute("nomeAssunto",livro.getAssunto().getAssunto());
 		
 		//Encaminhar ao documento editaLivro.jsp
 		RequestDispatcher rd = request.getRequestDispatcher("livro/editaLivro.jsp");
@@ -109,8 +106,8 @@ public class LivroController extends HttpServlet {
 	protected void editarLivro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		edit.setIdEditora(Integer.parseInt(request.getParameter("nomeEdit")));
-		assunto.setIdAssunto(Integer.parseInt(request.getParameter("nomeAssunto")));
+		//edit.setIdEditora(Integer.parseInt(request.getParameter("nomeEdit")));
+		//assunto.setIdAssunto(Integer.parseInt(request.getParameter("nomeAssunto")));
 		
 		livro.setIdLivro(Integer.parseInt(request.getParameter("idLivro")));
 		livro.setNomeLivro(request.getParameter("nomeLivro"));
@@ -118,8 +115,8 @@ public class LivroController extends HttpServlet {
 		livro.setDataPub(request.getParameter("dataPub"));
 		livro.setPreco(Double.parseDouble(request.getParameter("preco")));
 		livro.setPaginas(Integer.parseInt(request.getParameter("qtdPag")));
-		livro.setEditora(edit);
-		livro.setAssunto(assunto);
+		//livro.setEditora(edit);
+		//livro.setAssunto(assunto);
 		
 		//executar método do livroDAO
 		livroDao.update(livro);

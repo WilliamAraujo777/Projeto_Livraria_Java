@@ -7,20 +7,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import connection.connectionFactory;
+import connection.ConnectionFactory;
 import model.beans.Editora;
 
-public class editoraDAO {
+public class EditoraDAO {
 	
 	private Connection con = null;
-	public editoraDAO() {
+	public EditoraDAO() {
 		
 	}
 	public boolean save(Editora editora) {
 		
 		String sql = "INSERT INTO tbl_editoras (NomeEditora) VALUES (?)";
 		
-		con = connectionFactory.getConnection();
+		con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		
 		try {
@@ -32,7 +32,7 @@ public class editoraDAO {
 			System.err.println("Erro: " +e);
 			return false;
 		}finally {
-			connectionFactory.closeConnection(con);
+			ConnectionFactory.closeConnection(con);
 		}
 		
 	}
@@ -41,7 +41,7 @@ public class editoraDAO {
 	public List<Editora> listarEditora() {
 		List<Editora> editoras = new ArrayList<>();
 		String read = "select * from tbl_editoras";
-		con = connectionFactory.getConnection();
+		con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
@@ -60,13 +60,13 @@ public class editoraDAO {
 			System.err.println("Erro: " +e);
 			return null;
 		}finally {
-			connectionFactory.closeConnection(con, stmt, rs);
+			ConnectionFactory.closeConnection(con, stmt, rs);
 		}
 	}
 	//CRUD **UPDATE EDITORA**
 	public void selecionarEditora(Editora edit) {
 		String sql = "SELECT * FROM tbl_editoras WHERE IdEditora = ?";
-		con = connectionFactory.getConnection();
+		con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
@@ -81,13 +81,13 @@ public class editoraDAO {
 		} catch (SQLException e) {
 			System.err.println("Erro: " +e);
 		} finally {
-			connectionFactory.closeConnection(con,stmt,rs);
+			ConnectionFactory.closeConnection(con,stmt,rs);
 		}
 	}
 	
 	public boolean update (Editora edit) {
 		String sql = "UPDATE tbl_editoras set NomeEditora=? where IdEditora = ?";
-		con = connectionFactory.getConnection();
+		con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		try {
 			stmt = con.prepareStatement(sql);
@@ -99,7 +99,7 @@ public class editoraDAO {
 			System.err.println("Erro: " +e);
 			return false;
 		}finally {
-			connectionFactory.closeConnection(con,stmt);
+			ConnectionFactory.closeConnection(con,stmt);
 		}
 		
 		
@@ -107,7 +107,7 @@ public class editoraDAO {
 	//CRUD **DELETE EDITORA**
 	public boolean delete(Editora edit) {
 		String sql = "DELETE FROM tbl_editoras WHERE IdEditora = ? ";
-		con = connectionFactory.getConnection();
+		con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		
 		try {
@@ -119,7 +119,7 @@ public class editoraDAO {
 			System.err.println("Erro: " +e);
 			return false;
 		}finally {
-			connectionFactory.closeConnection(con,stmt);
+			ConnectionFactory.closeConnection(con,stmt);
 		}
 	}
 	

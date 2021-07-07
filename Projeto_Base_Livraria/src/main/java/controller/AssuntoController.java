@@ -8,13 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DAO.assuntoDAO;
+import model.DAO.AssuntoDAO;
 import model.beans.Assunto;
 
 @WebServlet(urlPatterns = { "/AssuntoController","/assuntos","/insertAssunto","/selectAssunto","/updateAssunto","/deleteAssunto" })
 public class AssuntoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	assuntoDAO assuntoDAO = new assuntoDAO();
+	AssuntoDAO assuntoDAO = new AssuntoDAO();
 	Assunto assunto = new Assunto();
 	
 

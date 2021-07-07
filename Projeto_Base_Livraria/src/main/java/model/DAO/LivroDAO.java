@@ -6,17 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import connection.connectionFactory;
+import connection.ConnectionFactory;
 import model.beans.Assunto;
-import model.beans.Autores;
 import model.beans.Editora;
 import model.beans.Livros;
 
-public class livroDAO {
+public class LivroDAO {
 	
 	private Connection con = null;
 	
-	public livroDAO() {
+	public LivroDAO() {
 		
 	}
 	/* INSERIR LIVROS */
@@ -26,7 +25,7 @@ public class livroDAO {
 			String sql = "INSERT INTO tbl_livros (nomeLivro , ISBN13, dataPub, precoLivro, numeroPaginas, idEditora, idAssunto)"
 					+ "VALUES (?,?,?,?,?,?,?)";
 			
-			con = connectionFactory.getConnection();
+			con = ConnectionFactory.getConnection();
 			PreparedStatement stmt = null;
 			
 			try {
@@ -44,22 +43,14 @@ public class livroDAO {
 				System.err.println("Erro: " +e);
 				return false;
 		}finally {
-			connectionFactory.closeConnection(con,stmt);
+			ConnectionFactory.closeConnection(con,stmt);
 		}
-		
-		
 	}
-
-	
-	
 	/* LISTAR TODOS OS LIVROS */
 	public List<Livros> listarLivros() {
 		List<Livros> livros = new ArrayList<>();
-		String read = "SELECT l.idLivro,l.nomeLivro,l.ISBN13,l.dataPub,l.precoLivro,l.numeroPaginas,e.NomeEditora,a.Assunto FROM tbl_livros AS l "
-				+ "JOIN tbl_editoras AS e "
-				+ "JOIN tbl_assuntos AS a ON l.idEditora = e.IdEditora AND "
-				+ "a.IdAssunto = l.idAssunto order by l.idLivro";
-		con = connectionFactory.getConnection();
+		String read = "SELECT * FROM vw_livros_editora_assunto";
+		con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
@@ -84,23 +75,21 @@ public class livroDAO {
 				livro.setAssunto(assunto);
 				//populando arraylist
 				livros.add(livro);
-				
-				
 			}
 			
 		} catch (SQLException e){
 			System.err.println("Erro: " +e);
 			return null;
 		}finally {
-			connectionFactory.closeConnection(con,stmt,rs);
+			ConnectionFactory.closeConnection(con,stmt,rs);
 		}
 		return livros;
 	}
 	
 	/*EDITAR LIVRO*/
 	public void selecionarLivro(Livros livro) {
-		String read2 = "SELECT * FROM tbl_livros WHERE idLivro = ?";
-		con = connectionFactory.getConnection();
+		String read2 = "SELECT * FROM vw_livros_editora_assunto WHERE idLivro = ?";
+		con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
@@ -117,8 +106,8 @@ public class livroDAO {
 				livro.setDataPub(rs.getString(4));
 				livro.setPreco(rs.getDouble(5));
 				livro.setPaginas(rs.getInt(6));
-				editora.setIdEditora(rs.getInt(7));
-				assunto.setIdAssunto(rs.getInt(8));
+				editora.setEditora(rs.getString(7));
+				assunto.setAssunto(rs.getString(8));
 				livro.setEditora(editora);
 				livro.setAssunto(assunto);
 			
@@ -126,14 +115,14 @@ public class livroDAO {
 		} catch (Exception e) {
 			System.err.println("Erro: " +e);
 		} finally {
-			connectionFactory.closeConnection(con,stmt,rs);
+			ConnectionFactory.closeConnection(con,stmt,rs);
 		}
 	}
 	
 	//CRUD **UPDATE LIVRO**
 	public boolean update (Livros livro) {
-		String sql = "UPDATE tbl_livros set nomeLivro=?, ISBN13=?, dataPub=?, precoLivro=?, numeroPaginas=?, idEditora=?, idAssunto=? where idLivro = ?";
-		con = connectionFactory.getConnection();
+		String sql = "UPDATE tbl_livros set nomeLivro=?, ISBN13=?, dataPub=?, precoLivro=?, numeroPaginas=? where idLivro = ?";
+		con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		try {
 			stmt = con.prepareStatement(sql);
@@ -142,23 +131,21 @@ public class livroDAO {
 			stmt.setString(3, livro.getDataPub());
 			stmt.setDouble(4, livro.getPreco());
 			stmt.setInt   (5, livro.getPaginas());
-			stmt.setInt(6, livro.getEditora().getIdEditora());
-			stmt.setInt(7, livro.getAssunto().getIdAssunto());
-			stmt.setInt   (8, livro.getIdLivro());
+			stmt.setInt   (6, livro.getIdLivro());
 			stmt.executeUpdate(); 
 			return true;
 		} catch (SQLException e) {
 			System.err.println("Erro: " +e);
 			return false;
 		}finally {
-			connectionFactory.closeConnection(con,stmt);
+			ConnectionFactory.closeConnection(con,stmt);
 		}
 	}
 	
 	//CRUD **DELETE LIVRO**
 	public boolean delete(Livros livro) {
 		String sql = "DELETE FROM tbl_livros WHERE idLivro = ? ";
-		con = connectionFactory.getConnection();
+		con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		
 		try {
@@ -170,7 +157,7 @@ public class livroDAO {
 			System.err.println("Erro: " +e);
 			return false;
 		}finally {
-			connectionFactory.closeConnection(con,stmt);
+			ConnectionFactory.closeConnection(con,stmt);
 		}
 	}
 }

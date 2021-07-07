@@ -7,15 +7,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import connection.connectionFactory;
+import connection.ConnectionFactory;
 import model.beans.Assunto;
 
-public class assuntoDAO {
+public class AssuntoDAO {
 	
 	private Connection con = null;
 	
 	
-	public assuntoDAO() {
+	public AssuntoDAO() {
 		
 	}
 
@@ -23,7 +23,7 @@ public class assuntoDAO {
 		
 		String sql = "INSERT INTO tbl_assuntos (Assunto) VALUES (?)";
 		
-		con = connectionFactory.getConnection();
+		con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		
 		try {
@@ -35,7 +35,7 @@ public class assuntoDAO {
 			System.err.println("Erro: " +e);
 			return false;
 		}finally {
-			connectionFactory.closeConnection(con,stmt);
+			ConnectionFactory.closeConnection(con,stmt);
 		}
 		
 	}
@@ -43,7 +43,7 @@ public class assuntoDAO {
 	public List<Assunto> listarAssunto() {
 		List<Assunto> assuntos = new ArrayList<>();
 		String read = "select * from tbl_assuntos";
-		con = connectionFactory.getConnection();
+		con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
@@ -62,14 +62,14 @@ public class assuntoDAO {
 			System.err.println("Erro: " +e);
 			return null;
 		}finally {
-			connectionFactory.closeConnection(con);
+			ConnectionFactory.closeConnection(con);
 		}
 	}
 
 	/*EDITAR ASSUNTO*/
 	public void selecionarAssunto(Assunto assunto) {
 		String read2 = "SELECT * FROM tbl_assuntos WHERE IdAssunto = ?";
-		con = connectionFactory.getConnection();
+		con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
@@ -85,14 +85,14 @@ public class assuntoDAO {
 		} catch (Exception e) {
 			System.err.println("Erro: " +e);
 		} finally {
-			connectionFactory.closeConnection(con,stmt,rs);
+			ConnectionFactory.closeConnection(con,stmt,rs);
 		}
 	}
 	
 	//CRUD **UPDATE ASSUNTO**
 	public boolean update (Assunto assunto) {
 		String sql = "UPDATE tbl_assuntos set Assunto=? where IdAssunto = ?";
-		con = connectionFactory.getConnection();
+		con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		try {
 			stmt = con.prepareStatement(sql);
@@ -104,7 +104,7 @@ public class assuntoDAO {
 			System.err.println("Erro: " +e);
 			return false;
 		}finally {
-			connectionFactory.closeConnection(con,stmt);
+			ConnectionFactory.closeConnection(con,stmt);
 		}
 		
 		
@@ -113,7 +113,7 @@ public class assuntoDAO {
 	//CRUD **DELETE ASSUNTO**
 	public boolean delete(Assunto assunto) {
 		String sql = "DELETE FROM tbl_assuntos WHERE IdAssunto = ? ";
-		con = connectionFactory.getConnection();
+		con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		
 		try {
@@ -125,7 +125,7 @@ public class assuntoDAO {
 			System.err.println("Erro: " +e);
 			return false;
 		}finally {
-			connectionFactory.closeConnection(con,stmt);
+			ConnectionFactory.closeConnection(con,stmt);
 		}
 	}
 	

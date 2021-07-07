@@ -32,23 +32,13 @@
 
 			<tr>
 				<td><input type="number" name="qtdPag" class="campos" value="<%out.print(request.getAttribute("qtdPag"));%>"> </td>
-			</tr>
-
-			<tr>
-				<td><input type="number" name="nomeEdit" class="campos" value="<%out.print(request.getAttribute("nomeEdit"));%>"></td>
-			</tr>
-
-			<tr>
-				<td><input type="number" name="nomeAssunto" class="campos" value="<%out.print(request.getAttribute("nomeAssunto"));%>"></td>
-			</tr>
+			</tr> 
 		</table>
-		<input type="button" value="Salvar" class="botao1" onClick="validar()">
+		<input type="button" value="Salvar" class="botao1" onClick="validarLivro()">
 		<a href="livros" class="botao1">Voltar</a>
 	</form>
 
-	<script src="scripts/validaLivro.js">
-		
-	</script>
+	<script src="scripts/validaLivro.js"></script>
 
 </body>
 </html>

@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class connectionFactory {
+public class ConnectionFactory {
 
 	//Módulo de conexão
 	//Parâmetros de conexão

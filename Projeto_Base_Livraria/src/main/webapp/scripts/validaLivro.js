@@ -10,9 +10,8 @@ function validarLivro(){
 	let dataPub = frmLivro.dataPub.value
 	let precoLivro = frmLivro.preco.value
 	let qtdPag = frmLivro.qtdPag.value
-	/*let nomeEdit = frmLivro.nomeEdit.value;
-	let nomeAssunto = frmLivro.nomeAssunto.value
-	let nomeAssunto = frmLivro.nomeAutor.value*/
+	
+	
 	
 	if(nomeLivro === "" ){
 		alert('Preencha o nome do livro!')

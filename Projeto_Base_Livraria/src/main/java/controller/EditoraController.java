@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import model.DAO.editoraDAO;
+import model.DAO.EditoraDAO;
 
 import model.beans.Editora;
 
@@ -19,7 +19,7 @@ import model.beans.Editora;
 @WebServlet(urlPatterns = { "/EditoraController","/editoras","/insertEditora","/selectEditora","/updateEditora","/deleteEditora" })
 public class EditoraController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	editoraDAO editDAO = new editoraDAO();
+	EditoraDAO editDAO = new EditoraDAO();
 	Editora edit = new Editora();
 	String url = "";
 	

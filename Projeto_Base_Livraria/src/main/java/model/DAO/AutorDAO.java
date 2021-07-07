@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import connection.connectionFactory;
+import connection.ConnectionFactory;
 import model.beans.Autores;
 
 
@@ -15,12 +15,12 @@ import model.beans.Autores;
 
 
 
-public class autorDAO {
+public class AutorDAO {
 	
 	private Connection con = null;
 	
 	
-	public autorDAO() {
+	public AutorDAO() {
 		
 	}
 	
@@ -30,7 +30,7 @@ public class autorDAO {
 		
 		String sql = "INSERT INTO tbl_autores (NomeAutor, SobrenomeAutor) VALUES (?,?)";
 		
-		con = connectionFactory.getConnection();
+		con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		
 		try {
@@ -43,7 +43,7 @@ public class autorDAO {
 			System.err.println("Erro: " +e);
 			return false;
 		}finally {
-			connectionFactory.closeConnection(con);
+			ConnectionFactory.closeConnection(con);
 		}
 		
 	}
@@ -51,7 +51,7 @@ public class autorDAO {
 	public List<Autores> listarAutor() {
 		List<Autores> autores = new ArrayList<>();
 		String read = "select * from tbl_autores";
-		con = connectionFactory.getConnection();
+		con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
@@ -71,14 +71,14 @@ public class autorDAO {
 			System.err.println("Erro: " +e);
 			return null;
 		}finally {
-			connectionFactory.closeConnection(con);
+			ConnectionFactory.closeConnection(con);
 		}
 	}
 	
 	//CRUD **UPDATE AUTOR**
 		public void selecionarAutor(Autores autor) {
 			String sql = "SELECT * FROM tbl_autores WHERE IdAutor = ?";
-			con = connectionFactory.getConnection();
+			con = ConnectionFactory.getConnection();
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
 			try {
@@ -95,13 +95,13 @@ public class autorDAO {
 			} catch (SQLException e) {
 				System.err.println("Erro: " +e);
 			} finally {
-				connectionFactory.closeConnection(con,stmt,rs);
+				ConnectionFactory.closeConnection(con,stmt,rs);
 			}
 		}
 		
 		public boolean update (Autores autor) {
 			String sql = "UPDATE tbl_autores set NomeAutor=?, SobrenomeAutor=? where IdAutor = ?";
-			con = connectionFactory.getConnection();
+			con = ConnectionFactory.getConnection();
 			PreparedStatement stmt = null;
 			try {
 				stmt = con.prepareStatement(sql);
@@ -114,7 +114,7 @@ public class autorDAO {
 				System.err.println("Erro: " +e);
 				return false;
 			}finally {
-				connectionFactory.closeConnection(con,stmt);
+				ConnectionFactory.closeConnection(con,stmt);
 			}
 			
 			
@@ -122,7 +122,7 @@ public class autorDAO {
 		//CRUD **DELETE AUTOR**
 		public boolean delete(Autores autor) {
 			String sql = "DELETE FROM tbl_autores WHERE IdAutor = ? ";
-			con = connectionFactory.getConnection();
+			con = ConnectionFactory.getConnection();
 			PreparedStatement stmt = null;
 			
 			try {
@@ -134,7 +134,7 @@ public class autorDAO {
 				System.err.println("Erro: " +e);
 				return false;
 			}finally {
-				connectionFactory.closeConnection(con,stmt);
+				ConnectionFactory.closeConnection(con,stmt);
 			}
 		}
 		

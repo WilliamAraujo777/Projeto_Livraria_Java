@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.DAO.autorDAO;
+import model.DAO.AutorDAO;
 import model.beans.Autores;
 
 
@@ -19,7 +19,7 @@ public class AutorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	Autores     autor = new Autores ();
-	autorDAO autorDAO = new autorDAO();
+	AutorDAO autorDAO = new AutorDAO();
 
 	public AutorController() {
 		super();

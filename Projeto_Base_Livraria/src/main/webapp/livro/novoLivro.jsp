@@ -5,14 +5,14 @@
     <%@ page import= "model.beans.Editora" %> 
     <%@ page import= "model.beans.Assunto" %> 
      <%@ page import= "model.beans.Autores" %> 
-    <%@ page import= "model.DAO.editoraDAO" %> 
-     <%@ page import= "model.DAO.autorDAO" %> 
-    <%@ page import= "model.DAO.assuntoDAO" %> 
+    <%@ page import= "model.DAO.EditoraDAO" %> 
+     <%@ page import= "model.DAO.AutorDAO" %> 
+    <%@ page import= "model.DAO.AssuntoDAO" %> 
     <%@ page import= "java.util.ArrayList" %>
     <%
-    	editoraDAO editDAO = new editoraDAO();
-    	assuntoDAO assuntoDAO = new assuntoDAO();
-    	autorDAO autorDAO = new autorDAO();
+    EditoraDAO editDAO = new EditoraDAO();
+                	AssuntoDAO assuntoDAO = new AssuntoDAO();
+                	AutorDAO autorDAO = new AutorDAO();
     %>
     
 <!DOCTYPE html>
@@ -23,8 +23,6 @@
 <link rel="icon" href="../imagens/livros.png">
 <link rel="stylesheet" href="../style.css">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 <body>
 	<h1>Inserir um novo livro</h1>
@@ -47,7 +45,7 @@
 				<td><input type="number" name="qtdPag" placeholder="Quantidade de paginas" class="campos"></td>
 			</tr>
 			
-			<!-- <tr>
+			 <tr>
 				<td>
 				<select id="select2" name="nomeEdit">
 				<option>
@@ -67,7 +65,7 @@
 				<%}%> 
 				</select>		
 				</td>
-			</tr> -->
+			</tr> 
 		</table>
 		<input type="button" value="Adicionar" class="botao1" onClick="validarLivro()">
 
@@ -75,6 +73,8 @@
 	</form>
 	
 <script src="../scripts/validaLivro.js"> </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
 $(document).ready(function() {
 $('#select2').select2({
